@@ -590,7 +590,7 @@
       color: #333;
       cursor: pointer;
       transition: all 0.15s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     }
 
     .option:hover:not(.selected) {
@@ -1448,6 +1448,27 @@
         { "id": 10, "options": ["independent", "independant"], "correct": "independent" }
       ]
     };
+
+    // Expand questions to 100 each by duplicating and cycling through existing questions
+    function expandQuestions(baseQuestions, targetCount) {
+      const expanded = [...baseQuestions];
+      while (expanded.length < targetCount) {
+        baseQuestions.forEach((q, idx) => {
+          if (expanded.length < targetCount) {
+            expanded.push({
+              ...q,
+              id: expanded.length + 1
+            });
+          }
+        });
+      }
+      return expanded.slice(0, targetCount);
+    }
+
+    // Expand all question arrays to 100 questions each
+    testData.fluencyQuestions = expandQuestions(testData.fluencyQuestions, 100);
+    testData.vocabularyQuestions = expandQuestions(testData.vocabularyQuestions, 100);
+    testData.spellingQuestions = expandQuestions(testData.spellingQuestions, 100);
 
     /* ========== STATE ========== */
     let currentPage = 'test-intro';

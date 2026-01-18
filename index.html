@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kyndryl // Language Skills - English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Reset & Base ---------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== DASHBOARD STYLES ========== */
+    .dashboard-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      max-width: 1200px;
+      margin: 30px auto;
+      width: calc(100% - 10px);
+    }
+
+    .dashboard-header {
+      padding: 30px 40px 20px;
+      /* border-bottom: 1px solid #eee; */
+    }
+
+    .dashboard-logo {
+      font-size: 36px;
+      font-weight: 300;
+      color: #FE442B;
+      font-style: italic;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .dashboard-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 16px;
+      flex-wrap: wrap;
+      background: #fff;
+      border: 0.5px solid #e0e0e0;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .dashboard-nav a {
+      color: #FE442B;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .dashboard-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: #ccc;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s;
+    }
+
+    .dashboard-nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FE442B;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .dashboard-body {
+      padding: 30px 40px;
+    }
+
+    .dashboard-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    .dashboard-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      max-width: 500px;
+    }
+
+    .dashboard-note {
+      background: #f0f0f0;
+      padding: 16px 20px;
+      width: 100%;
+      /* margin: 20px 0; */
+      font-size: 14px;
+      color: #333;
+    }
+
+    .dashboard-note strong {
+      font-weight: 600;
+    }
+
+    .tasks-section {
+      margin-top: 30px;
+    }
+
+    .tasks-header {
+      display: flex;
+      justify-content: space-between;
+      /* align-items: flex-end; */
+      margin-top: 40px;
+      flex-wrap: wrap;
+      gap: 100px;
+    }
+
+    .tasks-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .progress-section {
+      text-align: right;
+    }
+
+    .progress-label {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .progress-time {
+      font-size: 13px;
+      color: #333;
+    }
+
+    .progress-bar {
+      width: 300px;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #FE442B;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      border-left: 4px solid #2eb88f;
+      padding: 16px 20px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-left: 4px solid #606261;
+      margin-bottom: 12px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .task-icon {
+      font-size: 20px;
+      color: #666;
+    }
+
+    .task-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .task-expand {
+      color: #FE442B;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .task-time {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .task-language {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background: #fff;
+      min-width: 130px;
+    }
+
+    .task-start-btn {
+      background: #FE442B;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .task-start-btn:hover {
+      background: #e55d1f;
+    }
+
+    .status-legend {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 30px 20px;
+      flex-wrap: wrap;
+      border-top: 1px solid #eee;
+      margin-top: 30px;
+    }
+
+    .status-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+
+    .status-icon {
+      font-size: 18px;
+      color: #999;
+    }
+
+    .dashboard-footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #eee;
+    }
+
+    .dashboard-footer a {
+      color: #888;
+      text-decoration: none;
+    }
+
+    .dashboard-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== PRIVACY NOTICE PAGE ========== */
+    #privacyWrapper.dashboard-wrapper {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .privacy-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      max-width: 1200px;
+      margin: 15px auto;
+      width: calc(100% - 30px);
+      max-height: calc(100vh - 30px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .privacy-card .dashboard-footer {
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+
+    .privacy-header {
+      padding: 15px 30px;
+      flex-shrink: 0;
+    }
+
+    .privacy-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 12px 16px;
+    }
+
+    .privacy-nav a {
+      color: #FE442B;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .privacy-body {
+      padding: 15px 30px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .privacy-section {
+      border: 1px solid #e0e0e0;
+      border-left-width: 4px;
+      padding: 15px;
+    }
+
+    .privacy-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .privacy-icon {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .privacy-subtitle {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .privacy-content-box {
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .privacy-content-box h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 10px 0 6px;
+    }
+
+    .privacy-content-box h4:first-child {
+      margin-top: 0;
+    }
+
+    .privacy-content-box p {
+      margin-bottom: 8px;
+    }
+
+    .privacy-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .privacy-checkbox input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .privacy-checkbox a {
+      color: #FE442B;
+      text-decoration: none;
+    }
+
+    .privacy-checkbox a:hover {
+      text-decoration: underline;
+    }
+
+    .privacy-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .privacy-btn {
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .privacy-btn-save {
+      background: #FE442B;
+      color: #fff;
+      border: none;
+    }
+
+    .privacy-btn-save:hover {
+      background: #e55d1f;
+    }
+
+    .privacy-btn-save:disabled {
+      background: #ffb299;
+      cursor: not-allowed;
+    }
+
+    .privacy-btn-cancel {
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .privacy-btn-cancel:hover {
+      background: #f5f5f5;
+    }
+
+    /* ========== TEST STYLES ========== */
+    .test-wrapper {
+      display: none;
+    }
+
+    .test-wrapper.active {
+      display: block;
+    }
+
+    /* ---------- Topbar ---------- */
+    .topbar {
+      background: #FE442B;
+      color: #fff;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 240px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+
+    .hamburger {
+      font-size: 18px;
+      cursor: pointer;
+      margin-right: 4px;
+    }
+
+    .brand {
+      font-weight: 600;
+    }
+
+    .separator {
+      opacity: 0.8;
+    }
+
+    .section-name {
+      font-weight: 400;
+    }
+
+    .topbar-right {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    /* ---------- Main Container ---------- */
+    .container {
+      min-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    /* ---------- Content Area ---------- */
+    .content-area {
+      flex: 1;
+      padding: 30px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ---------- Instruction Text (top of question) ---------- */
+    .instruction-text {
+      color: #333;
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---------- Question Box ---------- */
+    .question-box {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 18px 24px;
+      margin-bottom: 20px;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ---------- Options ---------- */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .option {
+      background: #fff;
+      border: .5px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 16px 24px;
+      font-size: 15px;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .option:hover:not(.selected) {
+      background: #fafafa;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .option.selected {
+      background: #FE442B;
+      color: #fff;
+      border-color: #FE442B;
+      box-shadow: 0 2px 6px rgba(254, 68, 43, 0.3);
+    }
+
+    /* ---------- Navigation Arrow ---------- */
+    .nav-arrow {
+      display: flex;
+      justify-content: center;
+      padding: 50px 0 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .arrow-btn {
+      background: transparent;
+      border: none;
+      font-size: 44px;
+      font-weight: 700;
+      color: #222;
+      cursor: pointer;
+      padding: 8px 24px;
+      transition: transform 0.12s ease;
+    }
+
+    .arrow-btn:hover {
+      transform: translateX(5px);
+    }
+
+    /* ---------- Footer Navigation ---------- */
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 40px;
+      background: #fff;
+    }
+
+    .footer-nav.space-between {
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.12s ease;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #f5f5f5;
+    }
+
+    .btn-primary {
+      background: #FE442B;
+      border: 1px solid #FE442B;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #e55d1f;
+    }
+
+    /* ---------- Intro/Instructions Pages ---------- */
+    .intro-content {
+      max-width: 800px;
+    }
+
+    .intro-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 24px;
+    }
+
+    .intro-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .intro-content ul {
+      padding-left: 24px;
+      margin-bottom: 24px;
+    }
+
+    .intro-content li {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .intro-content li em {
+      font-style: italic;
+    }
+
+    /* ---------- Modal (Very good!) ---------- */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 128, 128, 0.7);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 40px;
+      z-index: 200;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 4px;
+      width: 480px;
+      max-width: 90%;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      background: #FE442B;
+      height: 56px;
+    }
+
+    .modal-body {
+      padding: 28px 32px;
+      text-align: center;
+    }
+
+    .modal-body p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .modal-btn {
+      background: #FE442B;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-btn:hover {
+      background: #e55d1f;
+    }
+
+    /* ---------- Complete Page (Responses Submitted) ---------- */
+    .complete-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+
+    .complete-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 50px;
+      align-self: flex-start;
+    }
+
+    .complete-circle {
+      width: 220px;
+      height: 220px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .complete-circle-inner {
+      width: 140px;
+      height: 140px;
+      background: rgba(46, 184, 143, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: rgba(46, 184, 143, 0.7);
+      font-weight: 400;
+    }
+
+    .complete-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .complete-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #2eb88f;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .complete-dot.visible {
+      opacity: 1;
+    }
+
+    /* ---------- Final Submit Page ---------- */
+    .final-submit-container {
+      display: flex;
+      flex-direction: column;
+      padding: 60px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .final-submit-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 50px;
+      align-self: flex-start;
+    }
+
+    .final-submit-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .final-submit-icon {
+      width: 120px;
+      height: 120px;
+      background: #2eb88f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .final-submit-checkmark {
+      font-size: 60px;
+      color: #fff;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .final-submit-thankyou {
+      font-size: 24px;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .final-submit-message {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .final-submit-footer {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* ---------- Congratulations Page ---------- */
+    .congratulations-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .congratulations-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .congratulations-subtitle {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .congratulations-message {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ---------- Loading Spinner ---------- */
+    .spinner-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #999;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ---------- Hidden ---------- */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      .content-area {
+        padding: 24px 20px;
+      }
+
+      .footer-nav {
+        padding: 16px 20px;
+      }
+
+      .option {
+        padding: 14px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== DASHBOARD PAGE ========== -->
+  <div id="dashboardWrapper" class="dashboard-wrapper">
+    <div class="dashboard-card">
+      <div class="dashboard-header">
+        <div class="dashboard-logo">kyndryl</div>
+        <nav class="dashboard-nav">
+          <a href="#">Personal Information</a>
+          <a href="#">Privacy Notice</a>
+          <a href="#">Help</a>
+          <div class="toggle-switch"></div>
+          <div class="dashboard-nav-right">
+            <span>→</span> Logout
+          </div>
+        </nav>
+      </div>
+
+      <div class="dashboard-body">
+        <h1 class="dashboard-title">Welcome to Your Assessment</h1>
+        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+          <div style="display: flex; flex-direction: column; margin-right: 60px; flex: 1;">
+            <p class="dashboard-desc">
+              Below is a list of assessment tasks. Please complete all of these tasks.<br>
+              Make sure you are in a comfortable environment where you can concentrate uninterrupted.<br>
+              Before you begin each task, select the language you are most comfortable completing in (where applicable).
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; margin-left: 60px; flex: 1;">
+            <div class="dashboard-note">
+              <strong>Note:</strong> If you get locked out, the assessment will be unlocked within 12 hours.
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; flex: 1;">
+            <h2 class="tasks-title">Tasks to Complete</h2>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; flex: 0 0 auto;">
+            <div class="tasks-header" style="margin-top: 0;">
+              <div class="progress-label">Assessment Progress</div>
+              <div class="progress-time">0 / 13 minute(s)</div>
+            </div>
+            <div class="progress-section">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tasks-section" style="margin-top: 20px; width: 100%;">
+          <div class="task-item">
+            <span class="task-icon">📋</span>
+            <span class="task-name">Language Skills - English</span>
+            <span class="task-expand">⌄</span>
+            <span class="task-time">
+              <span>⏱</span> ~ 13 minute(s)
+            </span>
+            <select class="task-language">
+              <option>English (US)</option>
+              <option>English (UK)</option>
+            </select>
+            <button class="task-start-btn" id="startTestBtn">START <span>›</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="status-legend" style="margin-top: 0; padding: 30px 40px; border-top: 1px solid #eee;">
+        <div class="status-item">
+          <span class="status-icon">🔒</span>
+          <span>Deactivated</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">📋</span>
+          <span>Pending</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⚙️</span>
+          <span>In progress</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Completed and sent</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⏰</span>
+          <span>Expired</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⊖</span>
+          <span>Error<br>Please contact support</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✕</span>
+          <span>Refused</span>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-footer">
+      Copyright ©️ 2025 Aon plc | <a href="#">Legal Disclaimer</a> | <a href="#">Cookies</a> | <a href="#">Terms &
+        Conditions</a> | 2
+    </div>
+  </div>
+
+  <!-- ========== PRIVACY NOTICE PAGE ========== -->
+  <div id="privacyWrapper" class="dashboard-wrapper" style="display: none;">
+    <div class="privacy-card">
+      <div class="privacy-header">
+        <div class="dashboard-logo">kyndryl</div>
+        <nav class="privacy-nav">
+          <a href="#">Help</a>
+          <div class="toggle-switch"></div>
+          <div class="dashboard-nav-right">
+            <span>→</span> Logout
+          </div>
+        </nav>
+      </div>
+
+      <div class="privacy-body">
+        <div class="privacy-section">
+          <h2 class="privacy-title">Privacy Notice</h2>
+          <div class="privacy-icon">🖨️</div>
+          <p class="privacy-subtitle">It is required to confirm that you have read and understood the Privacy Notice to
+            proceed with your online assessment.</p>
+
+          <div class="privacy-content-box">
+            <p>Aon is a leading global professional services firm providing a broad range of risk, retirement, and
+              health solutions. Aon is committed to protecting your privacy. This commitment reflects the value we place
+              on earning and keeping the trust of our customers, business partners, and others who share their personal
+              information with us.</p>
+
+            <h4>What does this Privacy Notice do?</h4>
+            <p>This Privacy Notice ("Notice") explains Aon's information data processing practices, namely our talent
+              services. This includes our assessment and feedback systems.</p>
+
+            <h4>Who are we?</h4>
+            <p>Throughout this Notice, "Aon" refers to Aon Human Capital Solutions GmbH, as well as its affiliated
+              companies and subsidiaries (also referred to as "we", "us", or "our"). You can contact us regarding
+              information contained within this Privacy Notice and the associated services:</p>
+            <p>
+              Aon Human Capital Solutions GmbH<br>
+              Caffamacherreihe 16<br>
+              20355 Hamburg
+            </p>
+
+            <h4>What information do we collect?</h4>
+            <p>We collect personal information that you provide directly to us when you use our assessment services.
+              This may include your name, email address, and assessment responses.</p>
+
+            <h4>How do we use your information?</h4>
+            <p>We use the information we collect to provide, maintain, and improve our services, to process your
+              assessment, and to communicate with you about your results.</p>
+          </div>
+
+          <label class="privacy-checkbox">
+            <input type="checkbox" id="privacyCheckbox">
+            I have read and understood the <a href="#">Privacy Notice</a>
+          </label>
+
+          <div class="privacy-buttons">
+            <button class="privacy-btn privacy-btn-save" id="privacySaveBtn" disabled>Save</button>
+            <button class="privacy-btn privacy-btn-cancel" id="privacyCancelBtn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-footer">
+      Copyright ©️ 2025 Aon plc | <a href="#">Legal Disclaimer</a> | <a href="#">Cookies</a> | <a href="#">Terms &
+        Conditions</a> | 3
+    </div>
+  </div>
+
+  <!-- ========== CONGRATULATIONS PAGE ========== -->
+  <div id="congratulationsWrapper" class="dashboard-wrapper" style="display: none;">
+    <div class="dashboard-card">
+      <div class="dashboard-header">
+        <div class="dashboard-logo">kyndryl</div>
+        <nav class="dashboard-nav">
+          <a href="#">Personal Information</a>
+          <a href="#" style="color: #FE442B;">Privacy Notice</a>
+          <a href="#">Help</a>
+          <div class="toggle-switch"></div>
+          <div class="dashboard-nav-right">
+            <span>→</span> Logout
+          </div>
+        </nav>
+      </div>
+
+      <div class="dashboard-body">
+        <div class="congratulations-content">
+          <h1 class="congratulations-title">Congratulations!</h1>
+          <h2 class="congratulations-subtitle">All your tasks are completed!</h2>
+          <p class="congratulations-message">You have now completed all tasks. Thank you very much. You can leave the system by clicking on 'logout'.</p>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-footer">
+      Copyright ©️ 2025 Aon plc | <a href="#">Legal Disclaimer</a> | <a href="#">Cookies</a> | <a href="#">Terms &
+        Conditions</a> | 4
+    </div>
+  </div>
+
+  <!-- ========== TEST WRAPPER ========== -->
+  <div id="testWrapper" class="test-wrapper">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="hamburger">☰</span>
+        <span class="brand">Kyndryl</span>
+        <span class="separator">//</span>
+        <span class="section-name" id="sectionName">Language Skills - English</span>
+      </div>
+      <div class="topbar-right">
+        <span id="timerDisplay"></span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+      <!-- PAGE: Test Introduction -->
+      <div id="page-test-intro" class="content-area">
+        <div class="intro-content">
+          <p>This English Test includes 3 independent parts. The whole test will take 10 minutes.</p>
+          <p>Each part of the test will be explained with examples. You control when each part of the test starts.</p>
+          <p>On the next page, you will find an example for the first part of this test: <em>fluency</em>. You will see
+            a sentence with a gap and four options to fill in that gap. Choose the correct option to fill in the gap in
+            the sentence or choose the question mark '?' if you do not know the answer.</p>
+          <p>Tap 'next' to start the example.</p>
+        </div>
+        <div class="footer-nav">
+          <button class="btn btn-primary" id="btnTestIntroNext">Next <span>›</span></button>
+        </div>
+      </div>
+
+      <!-- PAGE: Example -->
+      <div id="page-example" class="content-area hidden">
+        <p class="instruction-text">Choose the correct option to fill in the gap in the following sentence, or choose
+          '?' if you do not know the answer.</p>
+
+        <div class="question-box">
+          Where did you get the money _____?
+        </div>
+
+        <div class="options" id="exampleOptions">
+          <div class="option" data-value="out">out</div>
+          <div class="option" data-value="from">from</div>
+          <div class="option" data-value="away">away</div>
+          <div class="option" data-value="for">for</div>
+          <div class="option" data-value="?">?</div>
+        </div>
+
+        <div class="nav-arrow">
+          <button class="arrow-btn" id="exampleNext">›</button>
+        </div>
+      </div>
+
+      <!-- PAGE: Instructions (Please note) -->
+      <div id="page-instructions" class="content-area hidden">
+        <div class="intro-content">
+          <p>You have now completed the examples and should understand how to complete the test. You can repeat the
+            instructions and the example session if you would like.</p>
+
+          <h4>Please note:</h4>
+          <ul>
+            <li>The test requires you to work quickly and accurately.</li>
+            <li>There is always only one right answer.</li>
+            <li>If you are unsure what the right answer is, choose the answer that seems to be right to you, but try to
+              avoid wild guessing.</li>
+            <li>You will get points for right answers. Wrong answers will subtract points. The question mark will not
+              change your score. Therefore, choose the question mark instead of wild guessing.</li>
+            <li>The <em>fluency</em> test terminates automatically after 4 minutes.</li>
+          </ul>
+
+          <p>Please make sure that you will not be disturbed or distracted during the test.</p>
+        </div>
+        <div class="footer-nav space-between">
+          <button class="btn btn-secondary" id="btnInstructionsPrev"><span>‹</span> Introduction</button>
+          <button class="btn btn-primary" id="btnInstructionsNext">Next <span>›</span></button>
+        </div>
+      </div>
+
+      <!-- PAGE: Fluency Questions -->
+      <div id="page-fluency" class="content-area hidden">
+        <p class="instruction-text">Choose the correct option to fill in the gap in the following sentence, or choose
+          '?' if you do not know the answer.</p>
+
+        <div class="question-box" id="fluencyQuestionBox"></div>
+
+        <div class="options" id="fluencyOptions"></div>
+
+        <div class="nav-arrow">
+          <button class="arrow-btn" id="fluencyNext">›</button>
+        </div>
+      </div>
+
+      <!-- PAGE: Vocabulary Intro -->
+      <div id="page-vocab-intro" class="content-area hidden">
+        <div class="intro-content">
+          <p>You have now completed the <em>fluency</em> portion.</p>
+          <p>On the next page, you will find an example for the next part of this test: <em>vocabulary</em>. You will
+            see a definition and several word options. Choose the word that matches the definition or choose the
+            question mark '?' if you do not know the answer.</p>
+          <p>Tap 'next' to start the example.</p>
+        </div>
+        <div class="footer-nav">
+          <button class="btn btn-primary" id="btnVocabIntroNext">Next <span>›</span></button>
+        </div>
+      </div>
+
+      <!-- PAGE: Vocabulary Example -->
+      <div id="page-vocab-example" class="content-area hidden">
+        <p class="instruction-text">Choose the word that matches the following definition, or choose '?' if you do not
+          know the answer.</p>
+
+        <div class="question-box">
+          has no money
+        </div>
+
+        <div class="options" id="vocabExampleOptions">
+          <div class="option" data-value="pawn">pawn</div>
+          <div class="option" data-value="poor">poor</div>
+          <div class="option" data-value="pay">pay</div>
+          <div class="option" data-value="rich">rich</div>
+          <div class="option" data-value="?">?</div>
+        </div>
+
+        <div class="nav-arrow">
+          <button class="arrow-btn" id="vocabExampleNext">›</button>
+        </div>
+      </div>
+
+      <!-- PAGE: Vocabulary Questions -->
+      <div id="page-vocabulary" class="content-area hidden">
+        <p class="instruction-text">Choose the word that matches the following definition, or choose '?' if you do not
+          know the answer.</p>
+
+        <div class="question-box" id="vocabQuestionBox"></div>
+
+        <div class="options" id="vocabOptions"></div>
+
+        <div class="nav-arrow">
+          <button class="arrow-btn" id="vocabNext">›</button>
+        </div>
+      </div>
+
+      <!-- PAGE: Spelling Intro -->
+      <div id="page-spelling-intro" class="content-area hidden">
+        <div class="intro-content">
+          <p>You have now completed the <em>vocabulary</em> portion.</p>
+          <p>On the next page, you will find an example for the last part of this test <em>spelling</em>. You will see a
+            word in two versions: one spelled correctly and one spelled wrong. Choose the correct spelling of the word
+            or choose the questions mark '?' if you do not know the answer.</p>
+          <p>Tap 'next' to start the example.</p>
+        </div>
+        <div class="footer-nav">
+          <button class="btn btn-primary" id="btnSpellingIntroNext">Next <span>›</span></button>
+        </div>
+      </div>
+
+      <!-- PAGE: Spelling Questions -->
+      <div id="page-spelling" class="content-area hidden">
+        <p class="instruction-text">Choose the correct spelling of the word, or choose '?' if you do not know the
+          answer.</p>
+
+        <div class="options" id="spellingOptions"></div>
+
+        <div class="nav-arrow">
+          <button class="arrow-btn" id="spellingNext">›</button>
+        </div>
+      </div>
+
+      <!-- PAGE: Responses Submitted (Animation) -->
+      <div id="page-complete" class="content-area hidden">
+        <div class="complete-container">
+          <h2 class="complete-title">Responses Submitted</h2>
+          <div class="complete-circle">
+            <div class="complete-dots" id="completeDots"></div>
+            <div class="complete-circle-inner">Complete</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: Final Submit Page -->
+      <div id="page-final-submit" class="content-area hidden">
+        <div class="final-submit-container">
+          <h2 class="final-submit-title">Responses Submitted</h2>
+          <div class="final-submit-content">
+            <div class="final-submit-icon">
+              <div class="final-submit-checkmark">✓</div>
+            </div>
+            <h3 class="final-submit-thankyou">Thank you.</h3>
+            <p class="final-submit-message">You have completed the assessment and your results have been saved. Please click 'Next' to proceed.</p>
+            <div class="final-submit-footer">
+              <button class="btn btn-primary" id="btnFinalSubmitNext">Next <span>›</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal: Very good! -->
+    <div id="modal" class="modal-backdrop hidden">
+      <div class="modal">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <p id="modalMessage">Very good! You found the correct solution for this task.</p>
+          <button class="modal-btn" id="modalOk">ok <span>›</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end test-wrapper -->
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="spinner-overlay hidden">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    /* ========== QUESTIONS DATA (JSON) ========== */
+    const testData = {
+      "testInfo": {
+        "title": "Language Skills - English",
+        "totalDuration": 600,
+        "fluencyDuration": 240,
+        "vocabDuration": 240,
+        "spellingDuration": 120
+      },
+      "fluencyQuestions": [
+        { "id": 1, "sentence": "I'm hungry. I _____ had a piece of toast this morning.", "options": ["especially", "exactly", "even", "only"], "correct": "only" },
+        { "id": 2, "sentence": "He will go to hospital again. Oh dear. I hope _____ nothing serious.", "options": ["it's not", "it isn't", "it's", "it'll be"], "correct": "it's not" },
+        { "id": 3, "sentence": "If I _____ you, I would accept the job offer.", "options": ["was", "were", "am", "be"], "correct": "were" },
+        { "id": 4, "sentence": "She's been working here _____ 2015.", "options": ["since", "for", "from", "during"], "correct": "since" },
+        { "id": 5, "sentence": "They _____ to the party if they had been invited.", "options": ["would come", "would have come", "will come", "came"], "correct": "would have come" },
+        { "id": 6, "sentence": "I hope we find a gas station soon, or we'll run _____ petrol.", "options": ["off", "from", "out of", "out"], "correct": "out of" },
+        { "id": 7, "sentence": "Since she graduated from the college she _____ her job several times.", "options": ["has changed", "changed", "is changing", "changes"], "correct": "has changed" },
+        { "id": 8, "sentence": "I wish I _____ more time to finish this project.", "options": ["have", "had", "having", "has"], "correct": "had" },
+        { "id": 9, "sentence": "The report _____ by the team before the deadline.", "options": ["completed", "was completed", "completing", "complete"], "correct": "was completed" },
+        { "id": 10, "sentence": "Neither the manager _____ the employees were available.", "options": ["or", "nor", "and", "but"], "correct": "nor" },
+        { "id": 11, "sentence": "By the time we arrived, the movie _____.", "options": ["already started", "has already started", "had already started", "was already starting"], "correct": "had already started" },
+        { "id": 12, "sentence": "The children were excited _____ the upcoming holiday.", "options": ["for", "about", "with", "to"], "correct": "about" },
+        { "id": 13, "sentence": "She asked me _____ I had finished the assignment.", "options": ["that", "if", "what", "which"], "correct": "if" },
+        { "id": 14, "sentence": "He's not _____ to reach the top shelf.", "options": ["enough tall", "tall enough", "too tall", "so tall"], "correct": "tall enough" },
+        { "id": 15, "sentence": "I'm looking forward _____ you soon.", "options": ["to see", "seeing", "to seeing", "see"], "correct": "to seeing" }
+      ],
+      "vocabularyQuestions": [
+        { "id": 1, "definition": "has no money", "options": ["pawn", "poor", "pay", "rich"], "correct": "poor" },
+        { "id": 2, "definition": "extremely hungry", "options": ["famished", "elated", "placid", "verbose"], "correct": "famished" },
+        { "id": 3, "definition": "a person who loves books", "options": ["bibliophile", "technophile", "audiophile", "cinephile"], "correct": "bibliophile" },
+        { "id": 4, "definition": "to make something less severe", "options": ["aggravate", "mitigate", "instigate", "irritate"], "correct": "mitigate" },
+        { "id": 5, "definition": "lasting for a very short time", "options": ["eternal", "ephemeral", "perpetual", "infinite"], "correct": "ephemeral" },
+        { "id": 6, "definition": "a strong feeling of dislike", "options": ["affection", "sympathy", "aversion", "attraction"], "correct": "aversion" },
+        { "id": 7, "definition": "to officially forbid something", "options": ["allow", "permit", "prohibit", "enable"], "correct": "prohibit" },
+        { "id": 8, "definition": "clear and easy to understand", "options": ["ambiguous", "lucid", "obscure", "vague"], "correct": "lucid" },
+        { "id": 9, "definition": "showing great attention to detail", "options": ["careless", "meticulous", "sloppy", "hasty"], "correct": "meticulous" },
+        { "id": 10, "definition": "to increase rapidly", "options": ["diminish", "proliferate", "decrease", "reduce"], "correct": "proliferate" },
+        { "id": 11, "definition": "to make worse", "options": ["alleviate", "exacerbate", "improve", "enhance"], "correct": "exacerbate" },
+        { "id": 12, "definition": "very old or ancient", "options": ["modern", "contemporary", "archaic", "recent"], "correct": "archaic" },
+        { "id": 13, "definition": "to praise highly", "options": ["criticize", "condemn", "extol", "denounce"], "correct": "extol" },
+        { "id": 14, "definition": "a beginner or novice", "options": ["expert", "master", "neophyte", "veteran"], "correct": "neophyte" },
+        { "id": 15, "definition": "to make less intense", "options": ["intensify", "escalate", "abate", "amplify"], "correct": "abate" }
+      ],
+      "spellingQuestions": [
+        { "id": 1, "options": ["accomodate", "accommodate"], "correct": "accommodate" },
+        { "id": 2, "options": ["occurrence", "occurence"], "correct": "occurrence" },
+        { "id": 3, "options": ["seperate", "separate"], "correct": "separate" },
+        { "id": 4, "options": ["definitely", "definately"], "correct": "definitely" },
+        { "id": 5, "options": ["recieve", "receive"], "correct": "receive" },
+        { "id": 6, "options": ["necessary", "neccessary"], "correct": "necessary" },
+        { "id": 7, "options": ["embarrass", "embarass"], "correct": "embarrass" },
+        { "id": 8, "options": ["occassion", "occasion"], "correct": "occasion" },
+        { "id": 9, "options": ["millennium", "millenium"], "correct": "millennium" },
+        { "id": 10, "options": ["independent", "independant"], "correct": "independent" }
+      ]
+    };
+
+    /* ========== STATE ========== */
+    let currentPage = 'test-intro';
+    let fluencyIndex = 0;
+    let vocabIndex = 0;
+    let spellingIndex = 0;
+    let fluencyAnswers = {}; // Object to store answers by question index (handles looping)
+    let vocabAnswers = {}; // Object to store answers by question index (handles looping)
+    let spellingAnswers = {}; // Object to store answers by question index (handles looping)
+    let timerSeconds = 0;
+    let timerInterval = null;
+    let currentSection = 'fluency'; // fluency, vocabulary, spelling
+
+    /* ========== DOM ELEMENTS ========== */
+    const sectionName = document.getElementById('sectionName');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const modal = document.getElementById('modal');
+    const modalOk = document.getElementById('modalOk');
+    const modalMessage = document.getElementById('modalMessage');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    // Pages
+    const pages = {
+      'test-intro': document.getElementById('page-test-intro'),
+      'example': document.getElementById('page-example'),
+      'instructions': document.getElementById('page-instructions'),
+      'fluency': document.getElementById('page-fluency'),
+      'vocab-intro': document.getElementById('page-vocab-intro'),
+      'vocab-example': document.getElementById('page-vocab-example'),
+      'vocabulary': document.getElementById('page-vocabulary'),
+      'spelling-intro': document.getElementById('page-spelling-intro'),
+      'spelling': document.getElementById('page-spelling'),
+      'complete': document.getElementById('page-complete'),
+      'final-submit': document.getElementById('page-final-submit')
+    };
+
+    /* ========== DOM - Dashboard & Privacy ========== */
+    const dashboardWrapper = document.getElementById('dashboardWrapper');
+    const privacyWrapper = document.getElementById('privacyWrapper');
+    const congratulationsWrapper = document.getElementById('congratulationsWrapper');
+    const testWrapper = document.getElementById('testWrapper');
+    const startTestBtn = document.getElementById('startTestBtn');
+    const privacyCheckbox = document.getElementById('privacyCheckbox');
+    const privacySaveBtn = document.getElementById('privacySaveBtn');
+    const privacyCancelBtn = document.getElementById('privacyCancelBtn');
+
+    /* ========== INIT ========== */
+    document.addEventListener('DOMContentLoaded', () => {
+      setupEventListeners();
+      generateCompleteDots();
+      showDashboard();
+    });
+
+    /* ========== DASHBOARD ========== */
+    function showDashboard() {
+      dashboardWrapper.style.display = 'block';
+      privacyWrapper.style.display = 'none';
+      congratulationsWrapper.style.display = 'none';
+      testWrapper.classList.remove('active');
+    }
+
+    function showPrivacyPage() {
+      dashboardWrapper.style.display = 'none';
+      privacyWrapper.style.display = 'block';
+      congratulationsWrapper.style.display = 'none';
+      testWrapper.classList.remove('active');
+      // Reset checkbox
+      privacyCheckbox.checked = false;
+      privacySaveBtn.disabled = true;
+    }
+
+    function showCongratulations() {
+      dashboardWrapper.style.display = 'none';
+      privacyWrapper.style.display = 'none';
+      congratulationsWrapper.style.display = 'block';
+      testWrapper.classList.remove('active');
+    }
+
+    function startTest() {
+      dashboardWrapper.style.display = 'none';
+      privacyWrapper.style.display = 'none';
+      testWrapper.classList.add('active');
+      showPage('test-intro');
+    }
+
+    /* ========== EVENT LISTENERS ========== */
+    function setupEventListeners() {
+      // Dashboard start button - go to privacy page first
+      startTestBtn.addEventListener('click', showPrivacyPage);
+
+      // Privacy page
+      privacyCheckbox.addEventListener('change', () => {
+        privacySaveBtn.disabled = !privacyCheckbox.checked;
+      });
+      privacySaveBtn.addEventListener('click', startTest);
+      privacyCancelBtn.addEventListener('click', showDashboard);
+
+      // Test intro
+      document.getElementById('btnTestIntroNext').addEventListener('click', () => showPage('example'));
+
+      // Example page
+      setupExampleOptions();
+      document.getElementById('exampleNext').addEventListener('click', handleExampleNext);
+
+      // Instructions
+      document.getElementById('btnInstructionsPrev').addEventListener('click', () => showPage('test-intro'));
+      document.getElementById('btnInstructionsNext').addEventListener('click', startFluencyTest);
+
+      // Fluency
+      document.getElementById('fluencyNext').addEventListener('click', handleFluencyNext);
+
+      // Vocab intro
+      document.getElementById('btnVocabIntroNext').addEventListener('click', () => showPage('vocab-example'));
+
+      // Vocab example
+      setupVocabExampleOptions();
+      document.getElementById('vocabExampleNext').addEventListener('click', startVocabTest);
+
+      // Vocabulary
+      document.getElementById('vocabNext').addEventListener('click', handleVocabNext);
+
+      // Spelling intro
+      document.getElementById('btnSpellingIntroNext').addEventListener('click', startSpellingTest);
+
+      // Spelling
+      document.getElementById('spellingNext').addEventListener('click', handleSpellingNext);
+
+      // Final Submit
+      document.getElementById('btnFinalSubmitNext').addEventListener('click', () => {
+        showCongratulations();
+      });
+
+      // Modal
+      modalOk.addEventListener('click', hideModal);
+    }
+
+    /* ========== PAGE MANAGEMENT ========== */
+    function showPage(pageId) {
+      Object.values(pages).forEach(p => p.classList.add('hidden'));
+      if (pages[pageId]) {
+        pages[pageId].classList.remove('hidden');
+        currentPage = pageId;
+      }
+      updateHeader();
+    }
+
+    function updateHeader() {
+      sectionName.textContent = 'Language Skills - English';
+      if (currentPage === 'example') {
+        sectionName.textContent = 'EXAMPLE';
+        timerDisplay.textContent = '';
+      } else if (currentPage === 'fluency' || currentPage === 'vocabulary' || currentPage === 'spelling') {
+        // Show timer if it's running or if timerSeconds is set
+        if (timerInterval || timerSeconds > 0) {
+          timerDisplay.textContent = formatTime(timerSeconds);
+        }
+      } else {
+        timerDisplay.textContent = '';
+      }
+    }
+
+    /* ========== TIMER ========== */
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const s = (seconds % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function startTimer(duration, onComplete) {
+      stopTimer();
+      timerSeconds = duration;
+      timerDisplay.textContent = formatTime(timerSeconds);
+      updateHeader(); // Ensure header shows timer
+      timerInterval = setInterval(() => {
+        timerSeconds--;
+        timerDisplay.textContent = formatTime(timerSeconds);
+        if (timerSeconds <= 0) {
+          stopTimer();
+          if (onComplete) onComplete();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    /* ========== EXAMPLE PAGE ========== */
+    function setupExampleOptions() {
+      const options = document.querySelectorAll('#exampleOptions .option');
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          if (opt.dataset.value === 'from') {
+            showModal('correct');
+          } else if (opt.dataset.value !== '?') {
+            showModal('wrong');
+          }
+        });
+      });
+    }
+
+    function handleExampleNext() {
+      showPage('instructions');
+    }
+
+    /* ========== VOCAB EXAMPLE ========== */
+    function setupVocabExampleOptions() {
+      const options = document.querySelectorAll('#vocabExampleOptions .option');
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          if (opt.dataset.value === 'poor') {
+            showModal('correct');
+          } else if (opt.dataset.value !== '?') {
+            showModal('wrong');
+          }
+        });
+      });
+    }
+
+    /* ========== FLUENCY TEST ========== */
+    function startFluencyTest() {
+      showLoading();
+      setTimeout(() => {
+        hideLoading();
+        fluencyIndex = 0;
+        fluencyAnswers = {};
+        currentSection = 'fluency';
+        showPage('fluency');
+        renderFluencyQuestion();
+        startTimer(testData.testInfo.fluencyDuration, () => {
+          showPage('vocab-intro');
+        });
+      }, 1500);
+    }
+
+    function renderFluencyQuestion() {
+      const q = testData.fluencyQuestions[fluencyIndex];
+      document.getElementById('fluencyQuestionBox').textContent = q.sentence;
+
+      const optionsContainer = document.getElementById('fluencyOptions');
+      optionsContainer.innerHTML = '';
+
+      // Get the last selected answer for this question index (if any)
+      const lastAnswer = fluencyAnswers[fluencyIndex] && fluencyAnswers[fluencyIndex].length > 0 
+        ? fluencyAnswers[fluencyIndex][fluencyAnswers[fluencyIndex].length - 1] 
+        : null;
+
+      q.options.forEach(opt => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = opt;
+        div.dataset.value = opt;
+        if (lastAnswer === opt) {
+          div.classList.add('selected');
+        }
+        div.addEventListener('click', () => selectFluencyAnswer(opt));
+        optionsContainer.appendChild(div);
+      });
+
+      // Question mark option
+      const qMark = document.createElement('div');
+      qMark.className = 'option';
+      qMark.textContent = '?';
+      qMark.dataset.value = '?';
+      if (lastAnswer === '?') {
+        qMark.classList.add('selected');
+      }
+      qMark.addEventListener('click', () => selectFluencyAnswer('?'));
+      optionsContainer.appendChild(qMark);
+    }
+
+    function selectFluencyAnswer(value) {
+      // Store answer for current question index
+      if (!fluencyAnswers[fluencyIndex]) {
+        fluencyAnswers[fluencyIndex] = [];
+      }
+      fluencyAnswers[fluencyIndex].push(value);
+      
+      const options = document.querySelectorAll('#fluencyOptions .option');
+      options.forEach(opt => {
+        opt.classList.remove('selected');
+        if (opt.dataset.value === value) {
+          opt.classList.add('selected');
+        }
+      });
+    }
+
+    function handleFluencyNext() {
+      if (timerInterval) {
+        // Clear current selection display when moving to next question
+        const options = document.querySelectorAll('#fluencyOptions .option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        
+        // Move to next question (loop back to start if at end)
+        fluencyIndex = (fluencyIndex + 1) % testData.fluencyQuestions.length;
+        renderFluencyQuestion();
+      }
+    }
+
+    /* ========== VOCABULARY TEST ========== */
+    function startVocabTest() {
+      showLoading();
+      setTimeout(() => {
+        hideLoading();
+        vocabIndex = 0;
+        vocabAnswers = {};
+        currentSection = 'vocabulary';
+        showPage('vocabulary');
+        renderVocabQuestion();
+        startTimer(testData.testInfo.vocabDuration, () => {
+          showPage('spelling-intro');
+        });
+      }, 1500);
+    }
+
+    function renderVocabQuestion() {
+      const q = testData.vocabularyQuestions[vocabIndex];
+      document.getElementById('vocabQuestionBox').textContent = q.definition;
+
+      const optionsContainer = document.getElementById('vocabOptions');
+      optionsContainer.innerHTML = '';
+
+      // Get the last selected answer for this question index (if any)
+      const lastAnswer = vocabAnswers[vocabIndex] && vocabAnswers[vocabIndex].length > 0 
+        ? vocabAnswers[vocabIndex][vocabAnswers[vocabIndex].length - 1] 
+        : null;
+
+      q.options.forEach(opt => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = opt;
+        div.dataset.value = opt;
+        if (lastAnswer === opt) {
+          div.classList.add('selected');
+        }
+        div.addEventListener('click', () => selectVocabAnswer(opt));
+        optionsContainer.appendChild(div);
+      });
+
+      const qMark = document.createElement('div');
+      qMark.className = 'option';
+      qMark.textContent = '?';
+      qMark.dataset.value = '?';
+      if (lastAnswer === '?') {
+        qMark.classList.add('selected');
+      }
+      qMark.addEventListener('click', () => selectVocabAnswer('?'));
+      optionsContainer.appendChild(qMark);
+    }
+
+    function selectVocabAnswer(value) {
+      // Store answer for current question index
+      if (!vocabAnswers[vocabIndex]) {
+        vocabAnswers[vocabIndex] = [];
+      }
+      vocabAnswers[vocabIndex].push(value);
+      
+      const options = document.querySelectorAll('#vocabOptions .option');
+      options.forEach(opt => {
+        opt.classList.remove('selected');
+        if (opt.dataset.value === value) {
+          opt.classList.add('selected');
+        }
+      });
+    }
+
+    function handleVocabNext() {
+      if (timerInterval) {
+        // Clear current selection display when moving to next question
+        const options = document.querySelectorAll('#vocabOptions .option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        
+        // Move to next question (loop back to start if at end)
+        vocabIndex = (vocabIndex + 1) % testData.vocabularyQuestions.length;
+        renderVocabQuestion();
+      }
+    }
+
+    /* ========== SPELLING TEST ========== */
+    function startSpellingTest() {
+      showLoading();
+      setTimeout(() => {
+        hideLoading();
+        spellingIndex = 0;
+        spellingAnswers = {};
+        currentSection = 'spelling';
+        showPage('spelling');
+        renderSpellingQuestion();
+        startTimer(testData.testInfo.spellingDuration, endTest);
+      }, 1500);
+    }
+
+    function renderSpellingQuestion() {
+      const q = testData.spellingQuestions[spellingIndex];
+
+      const optionsContainer = document.getElementById('spellingOptions');
+      optionsContainer.innerHTML = '';
+
+      // Get the last selected answer for this question index (if any)
+      const lastAnswer = spellingAnswers[spellingIndex] && spellingAnswers[spellingIndex].length > 0 
+        ? spellingAnswers[spellingIndex][spellingAnswers[spellingIndex].length - 1] 
+        : null;
+
+      q.options.forEach(opt => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = opt;
+        div.dataset.value = opt;
+        if (lastAnswer === opt) {
+          div.classList.add('selected');
+        }
+        div.addEventListener('click', () => selectSpellingAnswer(opt));
+        optionsContainer.appendChild(div);
+      });
+
+      const qMark = document.createElement('div');
+      qMark.className = 'option';
+      qMark.textContent = '?';
+      qMark.dataset.value = '?';
+      if (lastAnswer === '?') {
+        qMark.classList.add('selected');
+      }
+      qMark.addEventListener('click', () => selectSpellingAnswer('?'));
+      optionsContainer.appendChild(qMark);
+    }
+
+    function selectSpellingAnswer(value) {
+      // Store answer for current question index
+      if (!spellingAnswers[spellingIndex]) {
+        spellingAnswers[spellingIndex] = [];
+      }
+      spellingAnswers[spellingIndex].push(value);
+      
+      const options = document.querySelectorAll('#spellingOptions .option');
+      options.forEach(opt => {
+        opt.classList.remove('selected');
+        if (opt.dataset.value === value) {
+          opt.classList.add('selected');
+        }
+      });
+    }
+
+    function handleSpellingNext() {
+      if (timerInterval) {
+        // Clear current selection display when moving to next question
+        const options = document.querySelectorAll('#spellingOptions .option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        
+        // Move to next question (loop back to start if at end)
+        spellingIndex = (spellingIndex + 1) % testData.spellingQuestions.length;
+        renderSpellingQuestion();
+      }
+    }
+
+    /* ========== END TEST ========== */
+    function endTest() {
+      stopTimer();
+      showPage('complete');
+      // Generate dots and start animation
+      generateCompleteDots();
+      // Small delay to ensure DOM is ready, then start animation
+      setTimeout(() => {
+        animateCompleteDots();
+      }, 100);
+    }
+
+    /* ========== MODAL ========== */
+    function showModal(type = 'correct') {
+      if (type === 'correct') {
+        modalMessage.textContent = 'Very good! You found the correct solution for this task.';
+      } else if (type === 'wrong') {
+        modalMessage.textContent = 'This answer is wrong. Please try again.';
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+    }
+
+    /* ========== LOADING ========== */
+    function showLoading() {
+      loadingSpinner.classList.remove('hidden');
+    }
+
+    function hideLoading() {
+      loadingSpinner.classList.add('hidden');
+    }
+
+    /* ========== COMPLETE PAGE ANIMATION ========== */
+    function generateCompleteDots() {
+      const dotsContainer = document.getElementById('completeDots');
+      if (!dotsContainer) return;
+      
+      // Clear existing dots
+      dotsContainer.innerHTML = '';
+      
+      const numDots = 36;
+      const radius = 100;
+      const centerX = 110;
+      const centerY = 110;
+
+      // Create all dots but keep them hidden initially
+      for (let i = 0; i < numDots; i++) {
+        const angle = (i / numDots) * 2 * Math.PI - Math.PI / 2; // Start from top (-90 degrees)
+        const x = radius * Math.cos(angle) + centerX - 4;
+        const y = radius * Math.sin(angle) + centerY - 4;
+
+        const dot = document.createElement('div');
+        dot.className = 'complete-dot';
+        dot.style.left = x + 'px';
+        dot.style.top = y + 'px';
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function animateCompleteDots() {
+      const dots = document.querySelectorAll('#completeDots .complete-dot');
+      const numDots = dots.length;
+      const delayPerDot = 80; // milliseconds between each dot appearing
+      
+      // Show dots one by one clockwise
+      dots.forEach((dot, index) => {
+        setTimeout(() => {
+          dot.classList.add('visible');
+          
+          // When the last dot is shown, wait a bit then transition to next page
+          if (index === numDots - 1) {
+            setTimeout(() => {
+              showPage('final-submit');
+            }, 500); // Small delay after last dot appears
+          }
+        }, index * delayPerDot);
+      });
+    }
+  </script>
+</body>
+
+</html>
